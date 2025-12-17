@@ -1024,7 +1024,7 @@
 
 import { Link } from "react-router-dom";
 import { motion, useAnimation } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef,useState } from "react";
 import {
   Car,
   MapPin,
@@ -1062,6 +1062,18 @@ export default function Services() {
   const statsRef = useRef(null);
   const carsRef = useRef(null);
   const svcRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640); // mobile breakpoint (sm)
+    };
+
+    handleResize(); // initial check
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleInView = (ref, control) => {
     const observer = new IntersectionObserver(
@@ -1318,15 +1330,15 @@ export default function Services() {
   className="py-16 sm:py-20 bg-gradient-to-b from-white to-gray-50"
 >
 <div className="max-w-7xl mx-auto px-4">
-
+ 
     {/* Heading */}
 <motion.div
 
       variants={fadeInUp}
 
-      initial="hidden"
+      initial={isMobile ? false : "hidden"}
 
-      animate={carsControl}
+      animate={isMobile ? "visible" : carsControl}
 
       className="text-center max-w-3xl mx-auto mb-14"
 >
@@ -1344,7 +1356,7 @@ export default function Services() {
 </p>
 </motion.div>
  
-    {/* Cars Grid */}
+    {/* Grid */}
 <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
 
       {availableCars.map((car, i) => (
@@ -1356,20 +1368,13 @@ export default function Services() {
 
           custom={i}
 
-          initial="hidden"
+          initial={isMobile ? false : "hidden"}
 
-          animate={carsControl}
+          animate={isMobile ? "visible" : carsControl}
 
-          className="group relative rounded-2xl bg-white border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-500 overflow-visible md:overflow-hidden"
+          className="group relative rounded-2xl bg-white shadow-md hover:shadow-xl transition overflow-visible md:overflow-hidden"
 >
 
-          {/* Glow (SAFE) */}
-<div
-
-            className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br ${car.gradient} opacity-0 blur-xl group-hover:opacity-20 transition-opacity duration-500`}
-
-          />
- 
           {/* Image */}
 <div className="relative h-44 sm:h-48 overflow-hidden rounded-t-2xl">
 <img
@@ -1380,33 +1385,17 @@ export default function Services() {
 
               loading="lazy"
 
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+              className="w-full h-full object-cover"
 
             />
- 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
- 
-            <span
-
-              className={`absolute top-4 left-4 px-3 py-1.5 rounded-full text-xs font-bold text-white bg-gradient-to-r ${car.gradient}`}
->
-
-              {car.type}
-</span>
 </div>
  
           {/* Content */}
-<div className="p-5 relative z-10">
-<div className="flex items-center justify-between mb-3">
-<h3 className="text-xl font-bold text-gray-900">
+<div className="p-5">
+<h3 className="text-xl font-bold text-gray-900 mb-2">
 
-                {car.name}
+              {car.name}
 </h3>
-<span className="text-sm text-gray-500">
-
-                {car.capacity}
-</span>
-</div>
  
             <ul className="space-y-2 text-sm text-gray-700 mb-4">
 
@@ -1420,19 +1409,15 @@ export default function Services() {
               ))}
 </ul>
  
-            <motion.a
+            <a
 
               href="/booking"
 
-              whileHover={{ scale: 1.05 }}
-
-              whileTap={{ scale: 0.98 }}
-
-              className="inline-flex items-center justify-center w-full py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-emerald-600 to-teal-600 shadow-md hover:shadow-lg transition"
+              className="block text-center py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-emerald-600 to-teal-600"
 >
 
               Book Now
-</motion.a>
+</a>
 </div>
 </motion.div>
 

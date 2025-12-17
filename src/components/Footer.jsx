@@ -338,8 +338,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="hover:text-cyan-600 transition"
                 >
-                  123 Main Street,<br />
-                  Pune, Maharashtra – 400001
+                 Shop no. 05, Sankalp society, Narhegaon,Katraj, Pune, Maharashtra 411041
                 </a>
               </li>
             </ul>
