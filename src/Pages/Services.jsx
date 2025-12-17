@@ -1312,88 +1312,137 @@ export default function Services() {
 
       {/* AVAILABLE CARS */}
       <section
-        ref={carsRef}
-        className="py-16 sm:py-20 bg-gradient-to-b from-white to-gray-50"
-      >
-        <div className="max-w-7xl mx-auto px-4">
-          <motion.div
-            variants={fadeInUp}
-            initial="hidden"
-            animate={carsControl}
-            className="text-center max-w-3xl mx-auto mb-14"
-          >
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
-              Choose Your{" "}
-              <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                Ride
-              </span>
-            </h2>
-            <p className="mt-4 text-gray-600 text-base sm:text-lg">
-              Comfortable, safe, and premium vehicles tailored for every journey
-            </p>
-          </motion.div>
 
-          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+  ref={carsRef}
 
-            {availableCars.map((car, i) => (
-              <motion.div
-                key={i}
-                variants={cardStagger}
-                custom={i}
-                initial="hidden"
-                animate={carsControl}
-                className="group relative bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden"
-              >
-                <div className="relative h-44 sm:h-48 overflow-hidden">
-                  <img
-                    src={car.image}
-                    alt={car.name}
-                    loading="lazy"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+  className="py-16 sm:py-20 bg-gradient-to-b from-white to-gray-50"
+>
+<div className="max-w-7xl mx-auto px-4">
 
-                  <div
-                    className={`absolute top-4 left-4 px-3 py-1.5 rounded-full text-xs font-bold text-white bg-gradient-to-r ${car.gradient}`}
-                  >
-                    {car.type}
-                  </div>
-                </div>
-                <div className="p-5">
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-xl font-bold text-gray-900">
-                      {car.name}
-                    </h3>
-                    <span className="text-sm text-gray-500">
-                      {car.capacity}
-                    </span>
-                  </div>
-                  <ul className="space-y-2 text-sm text-gray-700 mb-4">
-                    {car.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2">
-                        <span className="size-2 rounded-full bg-emerald-500"></span>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+    {/* Heading */}
+<motion.div
 
-                  <motion.a
-                    href="/booking"
-                    whileHover={{ scale: 1.05 }}
-                    className="inline-flex items-center justify-center w-full py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-emerald-600 to-teal-600 shadow-md hover:shadow-lg transition"
-                  >
-                    Book 
-                  </motion.a>
-                </div>
+      variants={fadeInUp}
 
-                <div
-                  className={`absolute -inset-1 bg-gradient-to-br ${car.gradient} opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500 -z-10`}
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      initial="hidden"
+
+      animate={carsControl}
+
+      className="text-center max-w-3xl mx-auto mb-14"
+>
+<h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900">
+
+        Choose Your{" "}
+<span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+
+          Ride
+</span>
+</h2>
+<p className="mt-4 text-gray-600 text-base sm:text-lg">
+
+        Comfortable, safe, and premium vehicles tailored for every journey
+</p>
+</motion.div>
+ 
+    {/* Cars Grid */}
+<div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+
+      {availableCars.map((car, i) => (
+<motion.div
+
+          key={i}
+
+          variants={cardStagger}
+
+          custom={i}
+
+          initial="hidden"
+
+          animate={carsControl}
+
+          className="group relative rounded-2xl bg-white border border-gray-100 shadow-md hover:shadow-2xl transition-all duration-500 overflow-visible md:overflow-hidden"
+>
+
+          {/* Glow (SAFE) */}
+<div
+
+            className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br ${car.gradient} opacity-0 blur-xl group-hover:opacity-20 transition-opacity duration-500`}
+
+          />
+ 
+          {/* Image */}
+<div className="relative h-44 sm:h-48 overflow-hidden rounded-t-2xl">
+<img
+
+              src={car.image}
+
+              alt={car.name}
+
+              loading="lazy"
+
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+
+            />
+ 
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+ 
+            <span
+
+              className={`absolute top-4 left-4 px-3 py-1.5 rounded-full text-xs font-bold text-white bg-gradient-to-r ${car.gradient}`}
+>
+
+              {car.type}
+</span>
+</div>
+ 
+          {/* Content */}
+<div className="p-5 relative z-10">
+<div className="flex items-center justify-between mb-3">
+<h3 className="text-xl font-bold text-gray-900">
+
+                {car.name}
+</h3>
+<span className="text-sm text-gray-500">
+
+                {car.capacity}
+</span>
+</div>
+ 
+            <ul className="space-y-2 text-sm text-gray-700 mb-4">
+
+              {car.features.map((feature, idx) => (
+<li key={idx} className="flex items-center gap-2">
+<span className="size-2 rounded-full bg-emerald-500" />
+
+                  {feature}
+</li>
+
+              ))}
+</ul>
+ 
+            <motion.a
+
+              href="/booking"
+
+              whileHover={{ scale: 1.05 }}
+
+              whileTap={{ scale: 0.98 }}
+
+              className="inline-flex items-center justify-center w-full py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-emerald-600 to-teal-600 shadow-md hover:shadow-lg transition"
+>
+
+              Book Now
+</motion.a>
+</div>
+</motion.div>
+
+      ))}
+</div>
+</div>
+</section>
+
+ 
+      
 
       {/* SERVICES LIST */}
       <section ref={svcRef} className="py-20 bg-gray-50">
