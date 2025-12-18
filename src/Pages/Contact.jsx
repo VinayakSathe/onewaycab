@@ -216,7 +216,7 @@ export default function Contact() {
     {
       icon: <Mail className="size-8 text-white" />,
       title: "Email",
-      details: ["onewaycabpune.site@gmail.com"],
+      details: ["onewaycab67@gmail.com"],
       action: (detail) => `mailto:${detail}`,
       buttonText: "Send Email",
       gradient: "from-blue-600 to-cyan-600",

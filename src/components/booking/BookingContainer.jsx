@@ -7,7 +7,7 @@ import SuccessModal from "./SuccessModal";
 
 export default function BookingContainer({ defaultPickup = "" }) {
   const WEB_APP_URL =
-    "https://script.google.com/macros/s/AKfycbwFEWGIm5kh2Gs41NeYHB7nAtYq9n1u_nENtnNE5sMAt1eu3qPBTgqoTfWi3LLr2QxO/exec";
+    "https://script.google.com/macros/s/AKfycbzkDXMqSDE9NqENluhsK0sDFtZmn1SoPTQ6gIThDW1TUROO86UuVLxrZKiuDJi1AUIA/exec";
 
   const [activeTab, setActiveTab] = useState("OneWay");
   const [showModal, setShowModal] = useState(false);

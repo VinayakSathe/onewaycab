@@ -321,10 +321,10 @@ export default function Footer() {
                   <Mail className="size-4 text-emerald-600" />
                 </span>
                 <a
-                  href="mailto:onewaycabpune.site@gmail.com"
+                  href="mailto:onewaycab67@gmail.com"
                   className="hover:text-emerald-600 transition"
                 >
-                  onewaycabpune.site@gmail.com
+                  onewaycab67@gmail.com
                 </a>
               </li>
 
